@@ -10,4 +10,5 @@ public class Ball : MonoBehaviour
     {
         _settings = settings;
     }
+
 }

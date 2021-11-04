@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: New Ball Generation Config
   m_EditorClassIdentifier: 
   _speed:
-    _min: 0
-    _max: 0
+    _min: 5
+    _max: 10
   _points:
-    _min: 0
-    _max: 0
+    _min: 200
+    _max: 1000
   _damage:
-    _min: 0
-    _max: 0
-  _colors: []
+    _min: 5
+    _max: 25
+  _colors:
+  - {r: 0.9528302, g: 0.9345962, b: 0.48989856, a: 1}
+  - {r: 0.49019608, g: 0.9529412, b: 0.5838795, a: 1}
+  - {r: 0.49019608, g: 0.8162768, b: 0.9529412, a: 1}
+  - {r: 0.9529412, g: 0.49019608, b: 0.58149743, a: 1}
+  - {r: 0.9529412, g: 0.49019608, b: 0.9504732, a: 1}
