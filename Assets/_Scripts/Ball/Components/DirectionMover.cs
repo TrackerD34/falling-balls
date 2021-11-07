@@ -6,9 +6,10 @@ public class DirectionMover : AbstractMover, IBallComponent
 {
     [SerializeField] private Vector3 _direction;
 
-    public void Initialize(BallSettings settings)
+    public void Initialize(Ball ball)
     {
-        Construct(settings.Speed);
+        Construct(ball.Settings.Speed);
+        StartMovement();
     }
 
     protected override Vector3 GetMoveDirection()

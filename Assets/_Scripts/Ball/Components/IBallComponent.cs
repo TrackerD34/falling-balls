@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBallComponent
 {
-    public void Initialize(BallSettings settings);
+    public void Initialize(Ball ball);
 }
