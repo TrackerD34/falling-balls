@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 public class BallGenerator : MonoBehaviour
 {
-    public event Action<Ball> BallGenerated; 
+    private const int PoolSize = 10;
+
+    public event Action<Ball> BallGenerated;
 
     [SerializeField] private Ball _prefab;
     [SerializeField] private BallGenerationConfig _config;
@@ -14,18 +17,19 @@ public class BallGenerator : MonoBehaviour
 
     private IEnumerator Start()
     {
+        ObjectPooler.Instance.CreatePool(_prefab, PoolSize);
         while (true)
         {
-            CreateBall();
+            yield return CreateBall();
             yield return new WaitForSeconds(1.0f);
         }
     }
 
-    private void CreateBall()
+    private IEnumerator CreateBall()
     {
-        var ball = Instantiate(_prefab, transform);
-
+        var ball = _prefab.GetPooledAtPosition(_services.CameraBounds.Bounds.max + Vector3.one * 10);
         ball.Construct(_config.CreateBallSettings());
+        yield return new WaitForEndOfFrame();
         SetOnStartPosition(ball);
         BallGenerated?.Invoke(ball);
     }
